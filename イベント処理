@@ -1,0 +1,76 @@
+★イベント	　　　　　▲意味
+★click	　　　　　　　▲指定要素がクリック・タップされたとき
+★dblclick	　　　　　▲指定要素がダブルクリックされたとき
+★mousemove	　　　　　▲指定要素内でカーソルを動かしたとき
+★mouseenter	　　　　▲指定要素内にカーソルが入ったとき
+★keydown / keyup　　	▲キーボードのキーが押されたとき／離されたとき
+★load	　　　　　　　▲HTMLドキュメントが読み込まれたあと
+★scroll	　　　　　　▲画面をスクロールしたとき
+★resize	　　　　　　▲ウィンドウサイズが変化したとき
+-----------------------------------------------------------
+jQueryでは、イベント発生時の処理（イベント処理）を設定するためにon()メソッド
+$(要素).on(イベント, () => {
+  // 処理
+});
+--------------------------------------------------------]
+ショッピングサイトで例えると、「購入ボタンをクリックしたら決済処理をする」というイメージ
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>イベント処理</title>
+</head>
+
+<body>
+  <button>ボタン</button>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/event.js"></script>
+</body>
+
+</html>
+---------------------------------------------------
+$(function() {
+  // ボタンがクリックされた場合
+  $('button').on('click', function(){
+    console.log('ボタンがクリックされました');
+  });
+});
+----------------------------------------------------
+$(要素).off(イベント);と記述することで、設定されたイベントを解除することができる
+-------------------------------------------------------
+on()メソッドは1つのイベント処理だけでなく、複数のイベント処理を同時に設定
+★操作	　　　　　　　　　　　　●イベント	　　◆処理
+★正方形をクリックする	　　　　　●click	　　　◆背景色を赤、テキストを「click」に変更する
+★正方形をダブルクリックする	　　●dblclick	　　◆背景色を緑、テキストを「dblclick」に変更する
+★マウスカーソルを正方形に入れる	●mouseenter	　◆背景色を青、テキストを「mouseenter」に変更する
+★マウスカーソルを正方形から出す	●mouseout	　　◆背景色をグレー、テキストを「mouseout」に変更する
+-----------------------------------------------------------
+$(function() {
+  $('div').on({
+    'click': () => {
+      // 背景を赤 
+      $('div').css('background-color', 'red');
+      // テキストを「click」 
+      $('div').text('click');
+    },
+    'dblclick': () => { 
+      // 背景を緑 
+      $('div').css('background-color', 'green'); 
+      // テキストを「dblclick」 
+      $('div').text('dblclick');
+    },
+    'mouseenter': () => {
+      // 背景を青 
+      $('div').css('background-color', 'blue'); 
+      // テキストを「mouseenter」 
+      $('div').text('mouseenter');
+     },
+     'mouseout': () => {
+      // 背景をグレー 
+      $('div').css('background-color', 'gray'); 
+      // テキストを「mouseout」 
+      $('div').text('mouseout');
+    },
+  });
+});
