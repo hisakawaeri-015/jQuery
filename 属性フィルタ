@@ -1,0 +1,29 @@
+属性フィルタ
+const text = $('.sample-list').text();
+const list = $('.sample-text').text();
+↓
+const text = $('①li[②class③^="④sample"]').text();
+①：HTML要素：p/h1/aなど
+②:属性:class/idなど
+③ 部分一致（*）
+　前方一致（^）
+　後方一致（$）
+④属性値
+---------------------------------------------------
+<!DOCTYPE html>
+<html lang="ja">
+<body>
+  <ul>
+    <li class="list-test">項目1</li>
+    <li class="sample-list">項目2</li>
+    <li class="sample-text">項目3</li>
+  </ul>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
+--------------------------------------------------------
+$(function() {
+  const text = $('li[class^="sample"]').text();
+  console.log(text);
+});
