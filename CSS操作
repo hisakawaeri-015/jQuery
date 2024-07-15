@@ -1,0 +1,35 @@
+CSS操作
+------------------------------------------------------------------------
+→class属性を操作することで、あらかじめ用意したスタイルを適用／削除すること
+①CSSファイルにあらかじめスタイルを指定したclassを用意しておく
+②用意しておいたclassをjQueryから追加することでスタイルを適用させる
+--------------------------------------------------------------------
+★class属性を操作するメソッド	◆意味
+★addClass()	　　　　　　　　◆指定要素にclass属性を追加する
+★removeClass()	　　　　　　　◆指定要素からclass属性を削除する
+★toggleClass()	　　　　　　　◆指定要素に対してclass属性の追加／削除を切り替える
+★hasClass()	　　　　　　　　◆指定要素に特定のclass属性があるかどうかを確認する
+-------------------------------------------------------------------------------
+★addClass()メソッド
+前章ではjQueryからCSSを操作する方法としてcss()メソッドを学びましたが、
+あらかじめ用意されているclassを利用する方法もあります。
+------------------------------------
+$('セレクタ').addClass('クラス名');
+-----------------------------------
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>class属性の操作</title>
+  <link rel="stylesheet" href="css/class-operation.css">
+</head>
+
+<body>
+  <p id="target">class属性の操作を理解しよう</p>
+  <button id="add">addClass</button>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/class-operation.js"></script>
+</body>
+
+</html>
