@@ -33,3 +33,95 @@ $('セレクタ').addClass('クラス名');
 </body>
 
 </html>
+--------------------------------------------------------------
+$(function() {
+  // id属性がaddの要素がクリックされたら
+  $('#add').on('click', function(){
+    // id属性がtargetの要素にclass属性'sample'を追加
+    $('#target').addClass('sample');
+  });
+});
+-------------------------------------------------------------
+
+★removeClass()メソッド
+----------------------------------------------------------
+$('セレクタ').removeClass('クラス名');
+----------------------------------------------------------
+$(function() {
+  // id属性がaddの要素がクリックされたら
+  $('#add').on('click', function(){
+    // id属性がtargetの要素にclass属性'sample'を追加
+    $('#target').addClass('sample');
+  });
+
+  $('#remove').on('click',function(){
+    // id属性がtargetの要素にclass属性'sample'を削除
+    $('#target').removeClass('sample');
+  });
+});
+----------------------------------------------------------
+★toggleClass()メソッド
+$('セレクタ').toggleClass('クラス名');
+toggleClass()は、addClass()メソッドと removeClass()メソッドの機能を切り替えるメソッドです。
+「class属性があれば削除し、なければ追加する」というように、class属性の追加／削除を切り替えられます。
+
+$(function() {
+  // id属性がtoggleの要素がクリックされたら
+  $('#toggle').on('click', function(){
+    // id属性がtargetの要素にclass属性'sample'を切り替え
+    $('#target').toggleClass('sample');
+  });
+});
+---------------------------------------------------------------
+★hasClass()メソッド
+$('セレクタ').hasClass('クラス名');
+
+
+$(function() {
+  // id属性がtoggleの要素がクリックされたら
+  $('#toggle').on('click', function(){
+    // id属性がtargetの要素にclass属性'sample'を切り替え
+    $('#target').toggleClass('sample');
+  });
+
+  //hasClassボタンをクリックしたとき
+  $('#has').on('click', function(){
+    // id属性がtargetの要素にclass属性'sample'があるか取得する
+    let result = $('#target').hasClass('sample');
+
+     // 条件分岐してconsole.logを表示する
+    if(result) {
+      console.log('sampleクラスがあります');
+    } else {
+      console.log('sampleクラスがありません');     }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
