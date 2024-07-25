@@ -1,0 +1,18 @@
+slideUp()メソッド：指定要素をスライドアップさせる
+slideDown()メソッド：指定要素をスライドダウンさせる
+slideToggle()メソッド：表示状態に応じて、指定要素をスライドアップまたはスライドダウンさせる
+-------------------------------------------------------------------------
+こんなHTMLがあったとする
+<!--======== 前略 ========-->
+
+<body>
+   <button id="fadeToggle">fadeToggle</button>
+   <button id="slideUp">slideUp</button>
+   <button id="slideDown">slideDown</button>
+   <button id="slideToggle">slideToggle</button>
+  <div class="box"></div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/animation.js"></script>
+</body>
+
+</html>
