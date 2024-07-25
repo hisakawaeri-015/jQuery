@@ -1,0 +1,183 @@
+jQueryでの基本的なフォーム操作
+フォームに入力された値をjQueryで取得することで、もしその内容が不適切な場合に
+入力内容を送信する前にユーザーに注意を促すことができます。
+------------------------------------
+// 値を取得する場合
+$(セレクタ).val();
+
+// 値を変更する場合
+$(セレクタ).val(変更後の値);
+--------------------------------------
+↓こんなフォーム作成があったとする
+
+ <!DOCTYPE html>
+ <html lang="ja">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <title>フォーム制御</title>
+ </head>
+ 
+ <body>
+   <form>
+     <!-- 名前 -->
+     <div>
+       <span>名前：</span>
+       <input type="text" name="username" />
+     </div>
+     <!-- 性別 -->
+     <div>
+       <span>性別：</span>
+       <input type="radio" name="gender" value="male">男
+       <input type="radio" name="gender" value="female">女
+       <input type="radio" name="gender" value="other">その他
+     </div>
+     <!-- 血液型 -->
+     <div>
+       <span>血液型：</span>
+       <select name="blood">
+         <option value="a">A型</option>
+         <option value="b">B型</option>
+         <option value="o">O型</option>
+         <option value="ab">AB型</option>
+         <option value="unknown">不明</option>
+       </select>
+     </div>
+     <!-- 趣味 -->
+     <div>
+       <span>趣味：</span>
+       <input type="checkbox" name="hobby" value="book">読書
+       <input type="checkbox" name="hobby" value="music">音楽
+       <input type="checkbox" name="hobby" value="movie">映画
+       <input type="checkbox" name="hobby" value="walk">散歩
+     </div>
+     <input type="button" id="check" value="check" />
+   </form>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="js/form.js"></script>
+ </body>
+ 
+ </html>
+----------------------------------------------------------------------
+ $(function () {
+   // id属性がcheckの要素がクリックされたら
+   $('#check').on('click', function () {
+     // 名前(テキストボックス)を取得する
+     console.log('名前:' + $('[name="username"]').val());
+ 
+     // 性別(ラジオボタン)を取得する
+     console.log('性別:' + $('[name="gender"]:checked').val());
+ 
+     // 血液型(セレクトボックス)を取得する
+     console.log('血液型:' + $('[name="blood"]').val());
+ 
+     // 趣味(チェックボックス)を取得する
+     $('[name="hobby"]:checked').each(function() {
+       //$(this)は1つずつの選択された要素を意味する
+       console.log('趣味:' + $(this).val());
+     });
+   });
+ });
+----------------------------------------------------------------------------
+名前項目が入力済みのときだけ「check」ボタンをクリックできるようにする
+
+初期状態ではボタンをクリックできないように、form.htmlのinputタグにdisabled属性を追加して値をtrueにしておきます。
+disabled属性とは、その要素を無効にするかどうかを指定する属性です。trueを指定すると、その要素は無効化されます。ボタンであれば、クリックできなくなります。
+<!--======== 前略 ========-->
+
+     <input type="button" id="check" value="check" />
+     <input type="button" id="check" value="check" disabled="true" />
+  </form>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/form.js"></script>
+</body>
+
+</html>
+---------------------------------------------------------------------------------
+//======== 前略 ========
+
+    // 趣味(チェックボックス)を取得する
+    $('[name="hobby"]:checked').each(function() {
+      //$(this)は1つずつの選択された要素を意味する
+      console.log('趣味:' + $(this).val());
+    });
+  });
+   // 名前が入力されたら
+   $('[name="username"]').on("input", function () {
+     let input = $(this).val();
+ 
+     // 入力文字があればボタンを押せる、なければボタンを押せなくする
+     if (input) {
+       $('#check').prop('disabled', false);
+     } else {
+       $('#check').prop('disabled', true);
+     }
+   });
+});
+
+jQueryからdisabled属性を変更するにはprop()メソッドを使います
+-------------------------------------------------------------------
+次に、チェックボックスのチェック数に上限を設けます。
+4つ目にチェックを入れようとするとエラーメッセージが表示されるようにする
+<!--======== 前略 ========-->
+
+    <!-- 趣味 -->
+    <div>
+       <span>趣味：</span>
+       <span>趣味（3つまで）：</span>
+      <input type="checkbox" name="hobby" value="book">読書
+      <input type="checkbox" name="hobby" value="music">音楽
+      <input type="checkbox" name="hobby" value="movie">映画
+      <input type="checkbox" name="hobby" value="walk">散歩
+    </div>
+
+<!--======== 後略 ========-->
+-------------------------------------------------------------------
+//======== 前略 ========
+
+   // 1. 趣味のチェックボックスが変更されたら
+   $('[name="hobby"]').on('change', function () {
+     // 2.、3. チェックの数が3より大きかったら
+     if ($('[name="hobby"]:checked').length > 3) {
+       // 4. チェックを付けようとしたものだけチェックを外す
+       $(this).prop('checked', false);
+ 
+       // 5. 注意を促すメッセージを表示する
+       alert('3つまでしか選択できません');
+     }
+   });
+});
+
+
+
+
+
+
+
+
+
+
+   // 名前が入力されたら
+  $('[name="username"]').on("input", function () {
+    let input = $(this).val();
+
+    // 入力文字があればボタンを押せる、なければボタンを押せなくする
+    if (input) {
+      $('#check').prop('disabled', false);
+    } else {
+      $('#check').prop('disabled', true);
+    }
+  });
+
+     // 1. 趣味のチェックボックスが変更されたら
+    $('[name="hobby"]').on('change', function () {
+      // 2.、3. チェックの数が3より大きかったら
+      if ($('[name="hobby"]:checked').length > 3) {
+        // 4. チェックを付けようとしたものだけチェックを外す
+        $(this).prop('checked', false);
+  
+        // 5. 注意を促すメッセージを表示する
+        alert('3つまでしか選択できません');
+      }
+    });
+});
