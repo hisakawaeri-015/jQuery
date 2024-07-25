@@ -1,0 +1,92 @@
+jQueryにはアニメーションを簡単に作成できる便利なメソッドが用意されている
+------------------------------------------------------------------------------------
+fadeOut()メソッド：指定要素をフェードアウトさせる
+fadeIn()メソッド：指定要素をフェードインさせる
+fadeToggle()メソッド：表示状態に応じて、指定要素をフェードアウトまたはフェードインさせる
+---------------------------------------------------------------------------------------
+$(セレクタ).fadeOut(スピード, コールバック関数);
+スピード：どれくらいの時間をかけてアニメーションを行うか
+コールバック関数：引数として渡される関数のこと（ここではフェードアウトの完了後に実行する関数のこと）
+----------------------------------------------------
+こんなHTMLがあったとする
+ <!DOCTYPE html>
+ <html lang="ja">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <title>アニメーション</title>
+   <link rel="stylesheet" href="css/animation.css">
+ </head>
+ 
+ <body>
+   <button id="fadeOut">fadeOut</button>
+   <button id="fadeIn">fadeIn</button>
+   <div class="box"></div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="js/animation.js"></script>
+ </body>
+ 
+ </html>
+---------------------------------------------------------------------------
+CSSでBOX作成
+ .box {
+   width: 200px;
+   height: 200px;
+   background-color: pink;
+ }
+------------------------------------------------------
+★フェードアウト方法
+
+ $(function () {
+   // id属性がfadeOutの要素がクリックされたら
+   $('#fadeOut').on('click', function() {
+     // フェードアウトする
+     $('.box').fadeOut();
+   });
+ });
+---------------------------------------------
+※スピードやコールバックを指定したい場合
+$(function () {
+  // id属性がfadeOutの要素がクリックされたら
+  $('#fadeOut').on('click', function() {
+    // フェードアウトする
+     $('.box').fadeOut(3000, function(){
+       alert('fadeOut完了');
+     });
+  });
+});
+-------------------------------------------
+★フェードアウト　フェードインミックス
+$(function () {
+  // id属性がfadeOutの要素がクリックされたら
+  $('#fadeOut').on('click', function() {
+    // フェードアウトする
+    $('.box').fadeOut();
+  });
+
+   // id属性がfadeInの要素がクリックされたら
+   $('#fadeIn').on('click', function() {
+     // フェードインする
+     $('.box').fadeIn();
+   });
+});
+-------------------------------------------------
+★toggleで切り替える場合
+<!--======== 前略 ========-->
+
+<body>
+   <button id="fadeToggle">fadeToggle</button>
+  <div class="box"></div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/`animation.js`"></script>
+</body>
+
+</html>
+----------------------------------------------------
+$(function () {
+   // id属性がfadeToggleの要素がクリックされたら
+   $('#fadeToggle').on('click', function() {
+     // フェードイン or フェードアウトする
+     $('.box').fadeToggle();
+   });
+});
