@@ -3,10 +3,16 @@ slideDown()メソッド：指定要素をスライドダウンさせる
 slideToggle()メソッド：表示状態に応じて、指定要素をスライドアップまたはスライドダウンさせる
 -------------------------------------------------------------------------
 こんなHTMLがあったとする
-<!--======== 前略 ========-->
+ <!DOCTYPE html>
+ <html lang="ja">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <title>アニメーション</title>
+   <link rel="stylesheet" href="css/animation.css">
+ </head>
 
 <body>
-   <button id="fadeToggle">fadeToggle</button>
    <button id="slideUp">slideUp</button>
    <button id="slideDown">slideDown</button>
    <button id="slideToggle">slideToggle</button>
@@ -16,3 +22,19 @@ slideToggle()メソッド：表示状態に応じて、指定要素をスライ�
 </body>
 
 </html>
+---------------------------------------------------------------------
+CSS
+
+---------------------------------------------------------------------
+$(function () {
+   $('#slideUp').on('click', function() {
+     $('.box').slideUp();
+   });
+   $('#slideDown').on('click', function() {
+     $('.box').slideDown();
+   });
+   $('#slideToggle').on('click', function() {
+     $('.box').slideToggle();
+   });
+});
+
