@@ -1,13 +1,57 @@
-<!--========== 前略 ==========-->
+-----------------------------------------------------------------------
+こんなHTMLがあったとする
+ <!DOCTYPE html>
+ <html lang="ja">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <title>アニメーション</title>
+   <link rel="stylesheet" href="css/animation.css">
+ </head>
+
 <body>
    <button id="fadeOut">fadeOut</button>
    <button id="fadeIn">fadeIn</button>
-  <button id="slideUp">slideUp</button>
-  <button id="slideDown">slideDown</button>
-   <button id="slideToggle">slideToggle</button>
+   <button id="slideUp">slideUp</button>
+   <button id="slideDown">slideDown</button>
   <div class="box"></div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/animation.js"></script>
 </body>
 
 </html>
+---------------------------------------------------------------------
+、jQueryで以下の処理を作成します。
+
+「fadeOut」ボタンがクリックされたら、css()メソッドで不透明度（opacity）を0にする
+「fadeIn」ボタンがクリックされたら、css()メソッドで不透明度（opacity）を1にする
+「slideUp」ボタンがクリックされたら、css()メソッドで高さ（height）を0にする
+「slideDown」ボタンがクリックされたら、css()メソッドで高さ（height）を200にする
+-------------------------------------------------------------------------------
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+   transition: all 1s ease;
+}
+CSSでtransitionプロパティを指定することで、jQueryのcss()メソッドを実行したときに指定したプロパティの値になるまでアニメーションします。
+--------------------------------------------------
+$(function () {
+   $('#fadeOut').on('click', function () {
+     // 不透明度を0にする（フェードアウトする）
+     $('.box').css('opacity', 0);
+   });
+   $('#fadeIn').on('click', function () {
+     // 不透明度を1にする（フェードインする）
+     $('.box').css('opacity', 1);
+   });
+  $('#slideUp').on('click', function() {
+     // 高さを0にする（スライドアップする）
+     $('.box').css('height', 0);
+  });
+  $('#slideDown').on('click', function() {
+     // 高さを200にする（スライドダウンする）
+     $('.box').css('height', 200);
+  });
+});
+----------------------------------------------------------
