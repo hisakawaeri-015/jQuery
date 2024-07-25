@@ -147,37 +147,35 @@ jQueryからdisabled属性を変更するにはprop()メソッドを使います
      }
    });
 });
+----------------------------------------------------------------------
+問題:クリックしたらテキストボックスに文字が表示
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>jQueryの基礎を学ぼう_8章課題</title>
+</head>
 
+<body>
+  <div>
+    <button class="btn">クリック</button>
+    <input type="text" class="text-box" value="" />
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>
 
-
-
-
-
-
-
-
-
-   // 名前が入力されたら
-  $('[name="username"]').on("input", function () {
-    let input = $(this).val();
-
-    // 入力文字があればボタンを押せる、なければボタンを押せなくする
-    if (input) {
-      $('#check').prop('disabled', false);
-    } else {
-      $('#check').prop('disabled', true);
-    }
+$(function() {
+  // class属性がbtnの要素がクリックされたら
+  $('.btn').on('click', function(){
+    // id属性がtargetの要素のcolorプロパティをredにする
+    $('.text-box').val('クリックされました');
   });
-
-     // 1. 趣味のチェックボックスが変更されたら
-    $('[name="hobby"]').on('change', function () {
-      // 2.、3. チェックの数が3より大きかったら
-      if ($('[name="hobby"]:checked').length > 3) {
-        // 4. チェックを付けようとしたものだけチェックを外す
-        $(this).prop('checked', false);
-  
-        // 5. 注意を促すメッセージを表示する
-        alert('3つまでしか選択できません');
-      }
-    });
 });
+
+
+
+
+
+
