@@ -1,5 +1,4 @@
 CSS操作
-
 ------------------------------------------------------------------------
 →class属性を操作することで、あらかじめ用意したスタイルを適用／削除すること
 ①CSSファイルにあらかじめスタイルを指定したclassを用意しておく
@@ -29,20 +28,42 @@ $('セレクタ').addClass('クラス名');
 <body>
   <p id="target">class属性の操作を理解しよう</p>
   <button id="add">addClass</button>
+  <button id="remove">removeClass</button>
+  <button id="toggle">toggleClass</button>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/class-operation.js"></script>
 </body>
 
 </html>
+---------------------
+CSS
+ .sample {
+   color: red;
+   background-color: black;
+ }
+
 --------------------------------------------------------------
 $(function() {
-  // id属性がaddの要素がクリックされたら
-  $('#add').on('click', function(){
-    // id属性がtargetの要素にclass属性'sample'を追加
-    $('#target').addClass('sample');
-  });
+   // id属性がaddの要素がクリックされたら
+   $('#add').on('click', function(){
+     // id属性がtargetの要素にclass属性'sample'を追加
+     $('#target').addClass('sample');
+   });
+ 
+   // id属性がremoveの要素がクリックされたら
+   $('#remove').on('click', function(){
+     // id属性がtargetの要素からclass属性'sample'を削除
+     $('#target').removeClass('sample');
+   });
+   // id属性がtoggleの要素がクリックされたら
+   $('#toggle').on('click', function(){
+     // id属性がtargetの要素にclass属性'sample'を追加／削除する
+     $('#target').toggleClass('sample');
+   });
 });
+
 -------------------------------------------------------------
+
 
 ★removeClass()メソッド
 ----------------------------------------------------------
